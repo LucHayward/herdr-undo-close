@@ -15,7 +15,7 @@ real.
 ## Install
 
 ```sh
-git clone <repo-url> herdr-undo-close
+git clone https://github.com/LucHayward/herdr-undo-close.git
 herdr plugin link ./herdr-undo-close
 ```
 
