@@ -1,0 +1,31 @@
+id = "luchayward.undo-close"
+name = "Undo Close"
+version = "0.1.0"
+min_herdr_version = "0.9.3"
+description = "iTerm2-style undo close: closed panes and tabs stay alive for a grace period and can be put back"
+platforms = ["linux", "macos"]
+
+# Needs python3 (3.7+) on the herdr server's PATH. No build step.
+
+[[actions]]
+id = "close"
+title = "Close pane (undoable)"
+contexts = ["pane"]
+command = ["python3", "undo_close.py", "close"]
+
+[[actions]]
+id = "close-tab"
+title = "Close tab (undoable)"
+contexts = ["pane", "workspace"]
+command = ["python3", "undo_close.py", "close-tab"]
+
+[[actions]]
+id = "undo"
+title = "Undo close"
+contexts = ["pane", "workspace", "global"]
+command = ["python3", "undo_close.py", "undo"]
+
+# After a server restart the held processes are gone: close their respawned
+# panes and clear the stack.
+[[startup]]
+command = ["python3", "undo_close.py", "startup"]
